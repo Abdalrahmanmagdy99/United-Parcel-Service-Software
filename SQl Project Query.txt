@@ -1,0 +1,28 @@
+create database UpsDataBase
+use [UpsDataBase]
+create table Retail_Center
+(
+Typpe varchar(10),
+UniqueID int primary key ,
+Addrees varchar(20)
+)
+create table Transportation_Event
+(
+ScheduleNumber int primary key ,
+Trans_Type varchar(10) ,
+DeliveryRoute varchar(15) 
+)
+create table Shipped_Items
+(
+Retail_ID int foreign key references Retail_Center(UniqueID),
+ItemNum int primary key ,
+Weeight int ,
+Dimension varchar(20) ,
+InsuranceAmt varchar(10) ,
+Destination varchar(10) ,
+FinalDelDate date 
+
+)
+create table ship_trans (
+Item_Num int foreign key references Shipped_Items(ItemNum),
+Schedule_Num int foreign key references Transportation_Event(ScheduleNumber))
